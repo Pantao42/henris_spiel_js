@@ -115,6 +115,14 @@ class HenrisSpiel {
 
     async startGame() {
         this.clearDisplay();
+        const gateImg = document.createElement('img');
+        gateImg.src = "assets/gate-3144351_1280.jpg";
+        gateImg.alt = "Schultor";
+        gateImg.style.width = "100%";
+        gateImg.style.maxWidth = "800px";
+        gateImg.style.display = "block";
+        gateImg.style.margin = "20px auto";
+        this.storyText.appendChild(gateImg);
         await this.displayText("Es ist Montag morgen. Du stehst vor der Schule. Möchtest du hineingehen? (ja/nein)");
         this.currentScene = 'start';
     }
@@ -123,7 +131,14 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
-                    //this.imageContainer.innerHTML = '<img src="assets/stairs-1868378_1280.jpg" alt="Treppenhaus" style="max-width: 100%;">';
+                    const stairsImg = document.createElement('img');
+                    stairsImg.src = "assets/stairs-1868378_1280.jpg";
+                    stairsImg.alt = "Treppenhaus";
+                    stairsImg.style.width = "100%";
+                    stairsImg.style.maxWidth = "800px";
+                    stairsImg.style.display = "block";
+                    stairsImg.style.margin = "20px auto";
+                    this.storyText.appendChild(stairsImg);
                     await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
