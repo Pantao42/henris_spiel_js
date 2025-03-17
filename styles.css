@@ -110,16 +110,24 @@ button:hover {
 }
 
 #left-eye, #right-eye {
-    width: 150px;
-    height: 150px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
     object-fit: cover;
 }
 
+#left-eye {
+    transform: scaleX(-1);
+}
+
 #left-eye:hover, #right-eye:hover {
     transform: scale(1.1);
+}
+
+#left-eye:hover {
+    transform: scaleX(-1) scale(1.1);
 }
 
 #grazius-face {
