@@ -4,16 +4,24 @@ class HenrisSpiel {
         this.buttonsContainer = document.getElementById('buttons-container');
         this.restartButton = document.getElementById('restart-button');
         this.eyeContainer = document.getElementById('eye-container');
-        this.leftEye = document.getElementById('left-eye');
-        this.rightEye = document.getElementById('right-eye');
+        this.graziusFace = document.getElementById('grazius-face');
         this.currentScene = null;
         this.lastQuestion = '';
         
         this.restartButton.addEventListener('click', () => this.startGame());
         
-        // Füge Event-Listener für die Augen hinzu
-        this.leftEye.addEventListener('click', () => this.handleInput('links'));
-        this.rightEye.addEventListener('click', () => this.handleInput('rechts'));
+        // Füge Event-Listener für das Gesicht hinzu
+        this.graziusFace.addEventListener('click', () => {
+            const rect = this.graziusFace.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const width = rect.width;
+            // Wenn der Klick auf der linken Seite ist
+            if (x < width / 2) {
+                this.handleInput('links');
+            } else {
+                this.handleInput('rechts');
+            }
+        });
         
         this.startGame();
     }
@@ -66,9 +74,8 @@ class HenrisSpiel {
     }
 
     async handleGraziusEncounter() {
-        // Zuerst den Container anzeigen
         this.eyeContainer.style.display = 'flex';
-        await this.displayText("Hinter der Tür wartet Herr Grazius und starrt dich an. In welches Auge schaust du? Klicke auf ein Auge.");
+        await this.displayText("Hinter der Tür wartet Herr Grazius und starrt dich an. In welches Auge schaust du? Klicke auf die linke oder rechte Seite seines Gesichts.");
         this.currentScene = 'grazius';
     }
 
@@ -131,13 +138,9 @@ class HenrisSpiel {
             case 'grazius':
                 this.eyeContainer.style.display = 'none';
                 if (input === 'rechts') {
-                    document.getElementById('right-eye').style.display = 'block';
-                    document.getElementById('left-eye').style.display = 'none';
                     await this.displayText("Du hast in sein starkes Auge geschaut und bekommst eine 1 Mündlich und keine Hausaufgaben");
                     this.endGame();
                 } else if (input === 'links') {
-                    document.getElementById('right-eye').style.display = 'none';
-                    document.getElementById('left-eye').style.display = 'block';
                     await this.displayText("Du schaust in sein schwaches Auge und Grazius nimmt dich nicht wahr. Bleibst du still oder probierst du zu fliehen? (still/flucht)");
                     this.currentScene = 'grazius_flucht';
                 }

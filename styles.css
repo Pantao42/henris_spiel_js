@@ -101,25 +101,26 @@ button:hover {
 
 #eye-container {
     width: 400px;
-    height: 200px;
+    height: 400px;
     margin: 20px auto;
     position: relative;
     display: none;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
-#left-eye, #right-eye {
-    width: 150px;
-    height: 150px;
+#grazius-face {
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
     object-fit: cover;
+    filter: brightness(0.9) contrast(1.1);
 }
 
-#left-eye:hover, #right-eye:hover {
-    transform: scale(1.1);
+#grazius-face:hover {
+    transform: scale(1.05);
 }
 
 #eye-container img {
