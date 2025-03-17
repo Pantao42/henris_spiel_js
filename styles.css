@@ -100,18 +100,26 @@ button:hover {
 }
 
 #eye-container {
-    width: 400px;
-    height: 200px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 150px;
     margin: 20px auto;
     position: relative;
     display: none;
     justify-content: space-around;
     align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 #left-eye, #right-eye {
     width: 75px;
     height: 75px;
+    min-width: 75px;
+    min-height: 75px;
+    max-width: 100px;
+    max-height: 100px;
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -128,6 +136,21 @@ button:hover {
 
 #left-eye:hover {
     transform: scaleX(-1) scale(1.1);
+}
+
+@media (max-width: 480px) {
+    #eye-container {
+        min-height: 120px;
+    }
+
+    #left-eye, #right-eye {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+        max-width: 80px;
+        max-height: 80px;
+    }
 }
 
 #grazius-face {
