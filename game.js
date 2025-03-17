@@ -96,27 +96,14 @@ class HenrisSpiel {
     }
 
     async handleTuerwahl() {
-        this.doorsContainer.style.display = 'flex';
-        this.buttonsContainer.style.display = 'none';
-        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du?");
-        
-        // Erstelle die Türbilder
-        for (let i = 1; i <= 5; i++) {
-            const img = document.createElement('img');
-            img.src = "assets/door-2788439_1280.png";
-            img.alt = `Tür ${i}`;
-            img.classList.add('door-image');
-            img.addEventListener('click', () => this.handleInput(i.toString()));
-            this.doorsContainer.appendChild(img);
-        }
-        
+        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du? (1/2/3/4/5)");
         this.currentScene = 'tuerwahl';
     }
 
     async startGame() {
         this.clearDisplay();
         const gateImg = document.createElement('img');
-        gateImg.src = "assets/gate-3144351_1280.jpg";
+        gateImg.src = "file://assets/gate-3144351_1280.jpg";
         gateImg.alt = "Schultor";
         gateImg.style.width = "100%";
         gateImg.style.maxWidth = "800px";
@@ -132,7 +119,7 @@ class HenrisSpiel {
             case 'start':
                 if (input === 'ja') {
                     const stairsImg = document.createElement('img');
-                    stairsImg.src = "assets/stairs-1868378_1280.jpg";
+                    stairsImg.src = "file://assets/stairs-1868378_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
                     stairsImg.style.width = "100%";
                     stairsImg.style.maxWidth = "800px";
@@ -226,8 +213,6 @@ class HenrisSpiel {
                 break;
 
             case 'tuerwahl':
-                this.doorsContainer.style.display = 'none';
-                this.buttonsContainer.style.display = 'flex';
                 const tuerTexte = {
                     '1': 'Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
                     '2': 'Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
