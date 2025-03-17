@@ -105,8 +105,8 @@ class HenrisSpiel {
         const gateImg = document.createElement('img');
         gateImg.src = "file://assets/gate-3144351_1280.jpg";
         gateImg.alt = "Schultor";
-        gateImg.style.width = "100%";
-        gateImg.style.maxWidth = "800px";
+        gateImg.style.width = "50%";
+        gateImg.style.maxWidth = "300px";
         gateImg.style.display = "block";
         gateImg.style.margin = "20px auto";
         this.storyText.appendChild(gateImg);
@@ -121,8 +121,8 @@ class HenrisSpiel {
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "file://assets/stairs-1868378_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
-                    stairsImg.style.width = "100%";
-                    stairsImg.style.maxWidth = "800px";
+                    stairsImg.style.width = "50%";
+                    stairsImg.style.maxWidth = "300px";
                     stairsImg.style.display = "block";
                     stairsImg.style.margin = "20px auto";
                     this.storyText.appendChild(stairsImg);
