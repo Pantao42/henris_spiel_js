@@ -6,6 +6,7 @@ class HenrisSpiel {
         this.eyeContainer = document.getElementById('eye-container');
         this.leftEye = document.getElementById('left-eye');
         this.rightEye = document.getElementById('right-eye');
+        this.doorsContainer = document.getElementById('doors-container');
         this.currentScene = null;
         this.lastQuestion = '';
         
@@ -52,6 +53,7 @@ class HenrisSpiel {
     clearDisplay() {
         this.storyText.innerHTML = '';
         this.buttonsContainer.innerHTML = '';
+        this.doorsContainer.innerHTML = '';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
         this.leftEye.style.display = 'none';
@@ -94,7 +96,20 @@ class HenrisSpiel {
     }
 
     async handleTuerwahl() {
-        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du? (1/2/3/4/5)");
+        this.doorsContainer.style.display = 'flex';
+        this.buttonsContainer.style.display = 'none';
+        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du?");
+        
+        // Erstelle die Türbilder
+        for (let i = 1; i <= 5; i++) {
+            const img = document.createElement('img');
+            img.src = "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=800&q=80";
+            img.alt = `Tür ${i}`;
+            img.classList.add('door-image');
+            img.addEventListener('click', () => this.handleInput(i.toString()));
+            this.doorsContainer.appendChild(img);
+        }
+        
         this.currentScene = 'tuerwahl';
     }
 
@@ -196,12 +211,14 @@ class HenrisSpiel {
                 break;
 
             case 'tuerwahl':
+                this.doorsContainer.style.display = 'none';
+                this.buttonsContainer.style.display = 'flex';
                 const tuerTexte = {
-                    '<img src="assets/door-2788439_1280.png" alt="Tür 1">': 'Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
-                    '<img src="assets/door-2788439_1280.png" alt="Tür 2">': 'Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
-                    '<img src="assets/door-2788439_1280.png" alt="Tür 3">': 'Die Tür führt in den Schulhof. Du machst blau und bekommst einen Fehltag. Ende',
-                    '<img src="assets/door-2788439_1280.png" alt="Tür 4">': 'Hinter der Tür ist der Schulleiter. Er ruft deine Eltern an. Ende',
-                    '<img src="assets/door-2788439_1280.png" alt="Tür 5">': 'Die Tür führt in die Cafeteria. Du bleibst den Rest des Tages dort. Ende'
+                    '1': 'Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
+                    '2': 'Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
+                    '3': 'Die Tür führt in den Schulhof. Du machst blau und bekommst einen Fehltag. Ende',
+                    '4': 'Hinter der Tür ist der Schulleiter. Er ruft deine Eltern an. Ende',
+                    '5': 'Die Tür führt in die Cafeteria. Du bleibst den Rest des Tages dort. Ende'
                 };
                 await this.displayText(tuerTexte[input] || "Diese Tür gibt es nicht. Du gehst verwirrt nach Hause. Ende");
                 this.endGame();
