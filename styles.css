@@ -105,6 +105,8 @@ button:hover {
     margin: 20px auto;
     position: relative;
     display: none;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #left-eye, #right-eye {
@@ -114,7 +116,6 @@ button:hover {
     cursor: pointer;
     transition: transform 0.3s ease;
     object-fit: cover;
-    display: none;
 }
 
 #left-eye:hover, #right-eye:hover {

@@ -54,9 +54,6 @@ class HenrisSpiel {
         this.buttonsContainer.innerHTML = '';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
-        this.eyeContainer.style.justifyContent = 'initial';
-        this.leftEye.style.display = 'none';
-        this.rightEye.style.display = 'none';
     }
 
     endGame() {
@@ -69,10 +66,8 @@ class HenrisSpiel {
     }
 
     async handleGraziusEncounter() {
+        // Zuerst den Container anzeigen
         this.eyeContainer.style.display = 'flex';
-        this.eyeContainer.style.justifyContent = 'space-around';
-        this.leftEye.style.display = 'block';
-        this.rightEye.style.display = 'block';
         await this.displayText("Hinter der Tür wartet Herr Grazius und starrt dich an. In welches Auge schaust du? Klicke auf ein Auge.");
         this.currentScene = 'grazius';
     }
@@ -135,8 +130,6 @@ class HenrisSpiel {
 
             case 'grazius':
                 this.eyeContainer.style.display = 'none';
-                this.leftEye.style.display = 'none';
-                this.rightEye.style.display = 'none';
                 if (input === 'rechts') {
                     await this.displayText("Du hast in sein starkes Auge geschaut und bekommst eine 1 Mündlich und keine Hausaufgaben");
                     this.endGame();
