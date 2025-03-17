@@ -131,9 +131,13 @@ class HenrisSpiel {
             case 'grazius':
                 this.eyeContainer.style.display = 'none';
                 if (input === 'rechts') {
+                    document.getElementById('right-eye').style.display = 'block';
+                    document.getElementById('left-eye').style.display = 'none';
                     await this.displayText("Du hast in sein starkes Auge geschaut und bekommst eine 1 Mündlich und keine Hausaufgaben");
                     this.endGame();
                 } else if (input === 'links') {
+                    document.getElementById('right-eye').style.display = 'none';
+                    document.getElementById('left-eye').style.display = 'block';
                     await this.displayText("Du schaust in sein schwaches Auge und Grazius nimmt dich nicht wahr. Bleibst du still oder probierst du zu fliehen? (still/flucht)");
                     this.currentScene = 'grazius_flucht';
                 }
