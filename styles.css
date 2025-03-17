@@ -100,13 +100,11 @@ button:hover {
 }
 
 #eye-container {
-    display: none;
     width: 400px;
     height: 200px;
     margin: 20px auto;
     position: relative;
-    display: flex;
-    justify-content: space-around;
+    display: none;
 }
 
 #left-eye, #right-eye {
@@ -116,6 +114,7 @@ button:hover {
     cursor: pointer;
     transition: transform 0.3s ease;
     object-fit: cover;
+    display: none;
 }
 
 #left-eye:hover, #right-eye:hover {
