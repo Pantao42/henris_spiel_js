@@ -108,6 +108,7 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
+                    this.imageContainer.innerHTML = '<img src="assets/treppenhaus.jpg" alt="Treppenhaus" style="max-width: 100%;">';
                     await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
