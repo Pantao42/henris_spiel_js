@@ -108,7 +108,7 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
-                    //this.imageContainer.innerHTML = '<img src="assets/treppenhaus.jpg" alt="Treppenhaus" style="max-width: 100%;">';
+                    this.imageContainer.innerHTML = '<img src="assets/stairs-1868378_1280.jpg" alt="Treppenhaus" style="max-width: 100%;">';
                     await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
@@ -197,11 +197,11 @@ class HenrisSpiel {
 
             case 'tuerwahl':
                 const tuerTexte = {
-                    '1': '<img src="tuer1.jpg" alt="Tür 1"> Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
-                    '2': '<img src="tuer2.jpg" alt="Tür 2"> Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
-                    '3': '<img src="tuer3.jpg" alt="Tür 3"> Die Tür führt in den Schulhof. Du machst blau und bekommst einen Fehltag. Ende',
-                    '4': '<img src="tuer4.jpg" alt="Tür 4"> Hinter der Tür ist der Schulleiter. Er ruft deine Eltern an. Ende',
-                    '5': '<img src="tuer5.jpg" alt="Tür 5"> Die Tür führt in die Cafeteria. Du bleibst den Rest des Tages dort. Ende'
+                    '1': '<img src="assets/door-2788439_1280.png" alt="Tür 1"> Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
+                    '2': '<img src="assets/door-2788439_1280.png" alt="Tür 2"> Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
+                    '3': '<img src="assets/door-2788439_1280.png" alt="Tür 3"> Die Tür führt in den Schulhof. Du machst blau und bekommst einen Fehltag. Ende',
+                    '4': '<img src="assets/door-2788439_1280.png" alt="Tür 4"> Hinter der Tür ist der Schulleiter. Er ruft deine Eltern an. Ende',
+                    '5': '<img src="assets/door-2788439_1280.png" alt="Tür 5"> Die Tür führt in die Cafeteria. Du bleibst den Rest des Tages dort. Ende'
                 };
                 await this.displayText(tuerTexte[input] || "Diese Tür gibt es nicht. Du gehst verwirrt nach Hause. Ende");
                 this.endGame();
