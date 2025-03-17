@@ -101,10 +101,25 @@ button:hover {
 
 #eye-container {
     display: none;
-    width: 200px;
+    width: 400px;
     height: 200px;
     margin: 20px auto;
     position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+#left-eye, #right-eye {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+}
+
+#left-eye:hover, #right-eye:hover {
+    transform: scale(1.1);
 }
 
 #eye-container img {

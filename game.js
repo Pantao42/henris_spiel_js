@@ -4,10 +4,16 @@ class HenrisSpiel {
         this.buttonsContainer = document.getElementById('buttons-container');
         this.restartButton = document.getElementById('restart-button');
         this.eyeContainer = document.getElementById('eye-container');
+        this.leftEye = document.getElementById('left-eye');
+        this.rightEye = document.getElementById('right-eye');
         this.currentScene = null;
         this.lastQuestion = '';
         
         this.restartButton.addEventListener('click', () => this.startGame());
+        
+        // Füge Event-Listener für die Augen hinzu
+        this.leftEye.addEventListener('click', () => this.handleInput('links'));
+        this.rightEye.addEventListener('click', () => this.handleInput('rechts'));
         
         this.startGame();
     }
@@ -48,6 +54,8 @@ class HenrisSpiel {
         this.buttonsContainer.innerHTML = '';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
+        this.leftEye.style.display = 'none';
+        this.rightEye.style.display = 'none';
     }
 
     endGame() {
@@ -60,8 +68,10 @@ class HenrisSpiel {
     }
 
     async handleGraziusEncounter() {
-        this.eyeContainer.style.display = 'block';
-        await this.displayText("Hinter der Tür wartet Herr Grazius und starrt dich an. In welches Auge schaust du? (rechts/links)");
+        this.eyeContainer.style.display = 'flex';
+        this.leftEye.style.display = 'block';
+        this.rightEye.style.display = 'block';
+        await this.displayText("Hinter der Tür wartet Herr Grazius und starrt dich an. In welches Auge schaust du? Klicke auf ein Auge.");
         this.currentScene = 'grazius';
     }
 
@@ -123,6 +133,8 @@ class HenrisSpiel {
 
             case 'grazius':
                 this.eyeContainer.style.display = 'none';
+                this.leftEye.style.display = 'none';
+                this.rightEye.style.display = 'none';
                 if (input === 'rechts') {
                     await this.displayText("Du hast in sein starkes Auge geschaut und bekommst eine 1 Mündlich und keine Hausaufgaben");
                     this.endGame();
