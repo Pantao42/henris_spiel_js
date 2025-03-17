@@ -103,7 +103,7 @@ class HenrisSpiel {
         // Erstelle die Türbilder
         for (let i = 1; i <= 5; i++) {
             const img = document.createElement('img');
-            img.src = "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=800&q=80";
+            img.src = "assets/door-2788439_1280.png";
             img.alt = `Tür ${i}`;
             img.classList.add('door-image');
             img.addEventListener('click', () => this.handleInput(i.toString()));
