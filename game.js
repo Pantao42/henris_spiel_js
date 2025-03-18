@@ -53,7 +53,7 @@ class HenrisSpiel {
     clearDisplay() {
         this.storyText.innerHTML = '';
         this.buttonsContainer.innerHTML = '';
-        //this.doorsContainer.innerHTML = '';
+        this.doorsContainer.innerHTML = '';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
         this.leftEye.style.display = 'none';
@@ -96,6 +96,7 @@ class HenrisSpiel {
     }
 
     async handleTuerwahl() {
+        this.clearDisplay();
         this.doorsContainer.style.display = 'flex';
         this.buttonsContainer.style.display = 'none';
         await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du?");
