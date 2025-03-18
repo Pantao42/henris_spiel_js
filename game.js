@@ -181,8 +181,8 @@ class HenrisSpiel {
                     const doorImg1 = document.createElement('img');
                     doorImg1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg1.alt = "Tür 1";
-                    doorImg1.style.width = "100%";
-                    doorImg1.style.maxWidth = "400px";
+                    doorImg1.style.width = "30%";
+                    doorImg1.style.maxWidth = "100px";
                     doorImg1.style.height = "auto";
                     doorImg1.style.display = "block";
                     doorImg1.style.margin = "20px auto";
@@ -206,8 +206,8 @@ class HenrisSpiel {
                     const doorImg2 = document.createElement('img');
                     doorImg2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg2.alt = "Tür 2";
-                    doorImg2.style.width = "100%";
-                    doorImg2.style.maxWidth = "400px";
+                    doorImg2.style.width = "30%";
+                    doorImg2.style.maxWidth = "200px";
                     doorImg2.style.height = "auto";
                     doorImg2.style.display = "block";
                     doorImg2.style.margin = "20px auto";
@@ -266,7 +266,7 @@ class HenrisSpiel {
                 questionsImg.style.display = 'block';
                 questionsImg.style.margin = '20px auto';
                 questionsImg.style.maxWidth = '100%';
-                this.storyText.appendChild(questionsImg);
+                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);
 
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
