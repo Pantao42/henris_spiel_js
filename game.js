@@ -53,7 +53,6 @@ class HenrisSpiel {
     clearDisplay() {
         this.storyText.innerHTML = '';
         this.buttonsContainer.innerHTML = '';
-        this.doorsContainer.innerHTML = '';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
         this.leftEye.style.display = 'none';
