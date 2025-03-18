@@ -181,7 +181,7 @@ class HenrisSpiel {
             case 'tuer':
                 if (input === '1') {
                     const doorImg1 = document.createElement('img');
-                    doorImg1.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
+                    doorImg1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg1.alt = "Tür 1";
                     doorImg1.style.width = "100%";
                     doorImg1.style.maxWidth = "400px";
@@ -206,7 +206,7 @@ class HenrisSpiel {
                     await this.handleGraziusEncounter();
                 } else if (input === '2') {
                     const doorImg2 = document.createElement('img');
-                    doorImg2.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
+                    doorImg2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg2.alt = "Tür 2";
                     doorImg2.style.width = "100%";
                     doorImg2.style.maxWidth = "400px";
@@ -264,7 +264,7 @@ class HenrisSpiel {
             case 'niedorf':
                 // Bild für die Fragen anzeigen
                 const questionsImg = document.createElement('img');
-                questionsImg.src = 'questions.jpg';
+                questionsImg.src = 'https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg';
                 questionsImg.style.display = 'block';
                 questionsImg.style.margin = '20px auto';
                 questionsImg.style.maxWidth = '100%';
@@ -291,7 +291,7 @@ class HenrisSpiel {
             case 'basement':
                 if (input === 'a') {
                     const jerxImg = document.createElement('img');
-                    jerxImg.src = 'jerx.jpg';
+                    jerxImg.src = "https://cdn.pixabay.com/photo/2022/04/03/07/49/man-7108274_1280.jpg";
                     jerxImg.style.display = 'block';
                     jerxImg.style.margin = '20px auto';
                     jerxImg.style.maxWidth = '100%';
@@ -309,7 +309,7 @@ class HenrisSpiel {
                     this.endGame();
                 } else if (input === 'b') {
                     const kaffeeImg = document.createElement('img');
-                    kaffeeImg.src = 'kaffee.jpg';
+                    kaffeeImg.src = "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg";
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
                     kaffeeImg.style.maxWidth = '100%';
