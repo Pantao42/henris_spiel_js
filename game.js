@@ -119,7 +119,7 @@ class HenrisSpiel {
             case 'start':
                 if (input === 'ja') {
                     const stairsImg = document.createElement('img');
-                    stairsImg.src = "file://assets/stairs-1868378_1280.jpg";
+                    stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
                     stairsImg.style.width = "50%";
                     stairsImg.style.maxWidth = "300px";
