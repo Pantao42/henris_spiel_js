@@ -103,7 +103,7 @@ class HenrisSpiel {
     async startGame() {
         this.clearDisplay();
         const gateImg = document.createElement('img');
-        gateImg.src = "file://assets/gate-3144351_1280.jpg";
+        gateImg.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
         gateImg.alt = "Schultor";
         gateImg.style.width = "50%";
         gateImg.style.maxWidth = "300px";
