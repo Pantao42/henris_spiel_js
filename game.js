@@ -96,7 +96,30 @@ class HenrisSpiel {
     }
 
     async handleTuerwahl() {
-        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du? (1/2/3/4/5)");
+        this.doorsContainer.style.display = 'flex';
+        this.buttonsContainer.style.display = 'none';
+        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du?");
+        
+        // Erstelle die Türbilder
+        for (let i = 1; i <= 5; i++) {
+            const doorContainer = document.createElement('div');
+            doorContainer.classList.add('door-container');
+            
+            const doorNumber = document.createElement('div');
+            doorNumber.classList.add('door-number');
+            doorNumber.textContent = i;
+            
+            const img = document.createElement('img');
+            img.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
+            img.alt = `Tür ${i}`;
+            img.classList.add('door-image');
+            
+            doorContainer.appendChild(doorNumber);
+            doorContainer.appendChild(img);
+            doorContainer.addEventListener('click', () => this.handleInput(i.toString()));
+            this.doorsContainer.appendChild(doorContainer);
+        }
+        
         this.currentScene = 'tuerwahl';
     }
 
@@ -225,6 +248,8 @@ class HenrisSpiel {
                 break;
 
             case 'tuerwahl':
+                this.doorsContainer.style.display = 'none';
+                this.buttonsContainer.style.display = 'flex';
                 const tuerTexte = {
                     '1': 'Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
                     '2': 'Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
