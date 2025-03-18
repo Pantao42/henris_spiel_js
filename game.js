@@ -169,6 +169,7 @@ class HenrisSpiel {
 
             case 'treppe':
                 if (input === 'hoch') {
+                    this.clearDisplay();
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
@@ -180,7 +181,7 @@ class HenrisSpiel {
                     stairsImg.style.borderRadius = "8px";
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
                     
-                    this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
+                    this.storyText.appendChild(stairsImg);
                     await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
                     this.currentScene = 'tuer';
                 } else if (input === 'runter') {
