@@ -34,9 +34,7 @@ class HenrisSpiel {
         // Wenn der Text mit einem Fragezeichen endet, ist es eine Frage
         if (text.includes('?')) {
             this.lastQuestion = text;
-            const textElement = document.createElement('p');
-            textElement.textContent = text;
-            this.storyText.appendChild(textElement);
+            this.storyText.innerHTML = `<p>${text}</p>`;
             
             // Extrahiere die Optionen aus der Frage
             const optionsMatch = text.match(/\((.*?)\)/);
@@ -46,13 +44,7 @@ class HenrisSpiel {
             }
         } else {
             // Wenn es eine Antwort ist, zeige die letzte Frage und die Antwort
-            const questionElement = document.createElement('p');
-            questionElement.textContent = this.lastQuestion;
-            const answerElement = document.createElement('p');
-            answerElement.textContent = `→ ${text}`;
-            this.storyText.appendChild(questionElement);
-            this.storyText.appendChild(document.createElement('br'));
-            this.storyText.appendChild(answerElement);
+            this.storyText.innerHTML = `<p>${this.lastQuestion}</p><br><p>→ ${text}</p>`;
             this.buttonsContainer.innerHTML = '';
         }
         this.storyText.scrollTop = this.storyText.scrollHeight;
