@@ -159,7 +159,7 @@ class HenrisSpiel {
                     stairsImg.style.borderRadius = "8px";
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
                     
-                    this.storyText.appendChild(stairsImg);
+                    this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
                     await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
@@ -293,7 +293,7 @@ class HenrisSpiel {
                     jerxImg.style.display = 'block';
                     jerxImg.style.margin = '20px auto';
                     jerxImg.style.maxWidth = '100%';
-                    this.storyText.appendChild(jerxImg);
+                    this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
 
                     await this.displayText("Hinter der Tür steht Herr Jerx und fragt ob Nico schon wieder fehlt.");
                     if (this.generateRandomChoice() === 1) {
@@ -311,7 +311,7 @@ class HenrisSpiel {
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
                     kaffeeImg.style.maxWidth = '100%';
-                    this.storyText.appendChild(kaffeeImg);
+                    this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
 
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
                     kaffeeImg.remove();
