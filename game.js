@@ -148,8 +148,6 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
-                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
-                    
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
@@ -161,8 +159,8 @@ class HenrisSpiel {
                     stairsImg.style.borderRadius = "8px";
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
                     
-                    // Füge das Bild vor dem Text ein
-                    this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
+                    this.storyText.appendChild(stairsImg);
+                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
                     await this.handleTuerwahl();
@@ -264,11 +262,11 @@ class HenrisSpiel {
             case 'niedorf':
                 // Bild für die Fragen anzeigen
                 const questionsImg = document.createElement('img');
-                questionsImg.src = 'https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg';
+                questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
                 questionsImg.style.display = 'block';
                 questionsImg.style.margin = '20px auto';
                 questionsImg.style.maxWidth = '100%';
-                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);
+                this.storyText.appendChild(questionsImg);
 
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
@@ -295,7 +293,7 @@ class HenrisSpiel {
                     jerxImg.style.display = 'block';
                     jerxImg.style.margin = '20px auto';
                     jerxImg.style.maxWidth = '100%';
-                    this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
+                    this.storyText.appendChild(jerxImg);
 
                     await this.displayText("Hinter der Tür steht Herr Jerx und fragt ob Nico schon wieder fehlt.");
                     if (this.generateRandomChoice() === 1) {
@@ -313,7 +311,7 @@ class HenrisSpiel {
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
                     kaffeeImg.style.maxWidth = '100%';
-                    this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
+                    this.storyText.appendChild(kaffeeImg);
 
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
                     kaffeeImg.remove();
