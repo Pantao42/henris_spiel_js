@@ -111,7 +111,7 @@ class HenrisSpiel {
             doorNumber.textContent = i;
             
             const img = document.createElement('img');
-            img.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
+            img.src = "https://cdn.pixabay.com/photo/2017/09/26/11/46/door-2788439_1280.png";
             img.alt = `Tür ${i}`;
             img.classList.add('door-image');
             
@@ -180,8 +180,55 @@ class HenrisSpiel {
 
             case 'tuer':
                 if (input === '1') {
+                    const doorImg1 = document.createElement('img');
+                    doorImg1.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
+                    doorImg1.alt = "Tür 1";
+                    doorImg1.style.width = "100%";
+                    doorImg1.style.maxWidth = "400px";
+                    doorImg1.style.height = "auto";
+                    doorImg1.style.display = "block";
+                    doorImg1.style.margin = "20px auto";
+                    doorImg1.style.borderRadius = "8px";
+                    doorImg1.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+                    
+                    // Nummer 1 hinzufügen
+                    const number1 = document.createElement('div');
+                    number1.textContent = '1';
+                    number1.style.position = 'absolute';
+                    number1.style.top = '10px';
+                    number1.style.left = '10px';
+                    number1.style.fontSize = '24px';
+                    number1.style.color = 'white';
+                    doorImg1.style.position = 'relative';
+                    doorImg1.appendChild(number1);
+                    
+                    this.storyText.insertBefore(doorImg1, this.storyText.firstChild);
                     await this.handleGraziusEncounter();
                 } else if (input === '2') {
+                    const doorImg2 = document.createElement('img');
+                    doorImg2.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
+                    doorImg2.alt = "Tür 2";
+                    doorImg2.style.width = "100%";
+                    doorImg2.style.maxWidth = "400px";
+                    doorImg2.style.height = "auto";
+                    doorImg2.style.display = "block";
+                    doorImg2.style.margin = "20px auto";
+                    doorImg2.style.borderRadius = "8px";
+                    doorImg2.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+                    doorImg2.style.transform = "scaleX(-1)"; // Bild spiegeln
+                    
+                    // Nummer 2 hinzufügen
+                    const number2 = document.createElement('div');
+                    number2.textContent = '2';
+                    number2.style.position = 'absolute';
+                    number2.style.top = '10px';
+                    number2.style.right = '10px';
+                    number2.style.fontSize = '24px';
+                    number2.style.color = 'white';
+                    doorImg2.style.position = 'relative';
+                    doorImg2.appendChild(number2);
+                    
+                    this.storyText.insertBefore(doorImg2, this.storyText.firstChild);
                     await this.handleNiedorfTest();
                 }
                 break;
@@ -215,17 +262,27 @@ class HenrisSpiel {
                 break;
 
             case 'niedorf':
+                // Bild für die Fragen anzeigen
+                const questionsImg = document.createElement('img');
+                questionsImg.src = 'questions.jpg';
+                questionsImg.style.display = 'block';
+                questionsImg.style.margin = '20px auto';
+                questionsImg.style.maxWidth = '100%';
+                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);
+
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
                     this.currentFrage++;
                     if (this.currentFrage < this.fragen.length) {
                         await this.displayText(this.fragen[this.currentFrage][0]);
                     } else {
+                        questionsImg.remove(); // Bild entfernen wenn alle Fragen beantwortet
                         await this.displayText("Du bekommst eine 1 und einen Ausbildungsplatz an dem Ort deiner Wahl.");
                         await this.displayText("Du hast gewonnen!");
                         this.endGame();
                     }
                 } else {
+                    questionsImg.remove(); // Bild entfernen bei falscher Antwort
                     await this.displayText("Falsch! Game Over!");
                     this.endGame();
                 }
@@ -233,6 +290,13 @@ class HenrisSpiel {
 
             case 'basement':
                 if (input === 'a') {
+                    const jerxImg = document.createElement('img');
+                    jerxImg.src = 'jerx.jpg';
+                    jerxImg.style.display = 'block';
+                    jerxImg.style.margin = '20px auto';
+                    jerxImg.style.maxWidth = '100%';
+                    this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
+
                     await this.displayText("Hinter der Tür steht Herr Jerx und fragt ob Nico schon wieder fehlt.");
                     if (this.generateRandomChoice() === 1) {
                         await this.displayText("Nico ist heute krank.");
@@ -241,9 +305,18 @@ class HenrisSpiel {
                         await this.displayText("Nico ist heute da");
                         await this.displayText("Herr Jerx ist gut gelaunt und telefoniert für den Rest des Tages");
                     }
+                    jerxImg.remove();
                     this.endGame();
                 } else if (input === 'b') {
+                    const kaffeeImg = document.createElement('img');
+                    kaffeeImg.src = 'kaffee.jpg';
+                    kaffeeImg.style.display = 'block';
+                    kaffeeImg.style.margin = '20px auto';
+                    kaffeeImg.style.maxWidth = '100%';
+                    this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
+
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
+                    kaffeeImg.remove();
                     this.endGame();
                 }
                 break;
