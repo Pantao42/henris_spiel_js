@@ -102,6 +102,8 @@ class HenrisSpiel {
 
     async startGame() {
         this.clearDisplay();
+        await this.displayText("Es ist Montag morgen. Du stehst vor der Schule. Möchtest du hineingehen? (ja/nein)");
+        
         const gateImg = document.createElement('img');
         gateImg.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
         gateImg.alt = "Schultor";
@@ -112,8 +114,9 @@ class HenrisSpiel {
         gateImg.style.margin = "20px auto";
         gateImg.style.borderRadius = "8px";
         gateImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-        this.storyText.appendChild(gateImg);
-        await this.displayText("Es ist Montag morgen. Du stehst vor der Schule. Möchtest du hineingehen? (ja/nein)");
+        
+        // Füge das Bild vor dem Text ein
+        this.storyText.insertBefore(gateImg, this.storyText.firstChild);
         this.currentScene = 'start';
     }
 
@@ -121,6 +124,8 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
+                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
+                    
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
@@ -131,8 +136,9 @@ class HenrisSpiel {
                     stairsImg.style.margin = "20px auto";
                     stairsImg.style.borderRadius = "8px";
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-                    this.storyText.appendChild(stairsImg);
-                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
+                    
+                    // Füge das Bild vor dem Text ein
+                    this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
                     await this.handleTuerwahl();
