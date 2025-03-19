@@ -191,6 +191,7 @@ class HenrisSpiel {
 
             case 'tuer':
                 if (input === '1') {
+                    await this.handleGraziusEncounter();
                     const doorImg1 = document.createElement('img');
                     doorImg1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg1.alt = "Tür 1";
@@ -214,7 +215,6 @@ class HenrisSpiel {
                     doorImg1.appendChild(number1);
                     
                     this.storyText.insertBefore(doorImg1, this.storyText.firstChild);
-                    await this.handleGraziusEncounter();
                 } else if (input === '2') {
                     await this.handleNiedorfTest();
                     const doorImg2 = document.createElement('img');
@@ -294,12 +294,13 @@ class HenrisSpiel {
                 questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
                 questionsImg.style.display = 'block';
                 questionsImg.style.margin = '20px auto';
-                questionsImg.style.maxWidth = '100%';
+                questionsImg.style.maxWidth = '20%';
                 this.storyText.insertBefore(questionsImg, this.storyText.firstChild);               
                 break;
 
             case 'basement':
                 if (input === 'a') {
+                    this.clearDisplay();
                     await this.displayText("Hinter der Tür steht Herr Jerx und fragt ob Nico schon wieder fehlt.");
                     if (this.generateRandomChoice() === 1) {
                         await this.displayText("Nico ist heute krank.");
@@ -312,16 +313,17 @@ class HenrisSpiel {
                     jerxImg.src = "https://cdn.pixabay.com/photo/2022/04/03/07/49/man-7108274_1280.jpg";
                     jerxImg.style.display = 'block';
                     jerxImg.style.margin = '20px auto';
-                    jerxImg.style.maxWidth = '100%';
+                    jerxImg.style.maxWidth = '50%';
                     this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
                     this.endGame();
                 } else if (input === 'b') {
+                    this.clearDisplay();
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
                     const kaffeeImg = document.createElement('img');
                     kaffeeImg.src = "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg";
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
-                    kaffeeImg.style.maxWidth = '100%';
+                    kaffeeImg.style.maxWidth = '50%'; // Auf 50% geändert
                     this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
                     this.endGame();
                 }
