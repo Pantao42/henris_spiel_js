@@ -148,6 +148,7 @@ class HenrisSpiel {
         switch(this.currentScene) {
             case 'start':
                 if (input === 'ja') {
+                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
@@ -160,7 +161,6 @@ class HenrisSpiel {
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
                     
                     this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
-                    await this.displayText("Du betrittst die Schule und stehst vor einem Treppenhaus. Gehst du hoch oder runter? (hoch/runter)");
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
                     await this.handleTuerwahl();
