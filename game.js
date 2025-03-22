@@ -169,8 +169,6 @@ class HenrisSpiel {
 
             case 'treppe':
                 if (input === 'hoch') {
-                    this.clearDisplay();
-                    await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
@@ -183,6 +181,65 @@ class HenrisSpiel {
                     stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
                     
                     this.storyText.appendChild(stairsImg);
+                    
+                    const doorContainer = document.createElement('div');
+                    doorContainer.style.display = 'flex';
+                    doorContainer.style.justifyContent = 'center';
+                    doorContainer.style.gap = '20px';
+                    doorContainer.style.margin = '20px 0';
+
+                    const door1 = document.createElement('img');
+                    door1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
+                    door1.alt = "Tür 1";
+                    door1.style.width = "200px";
+                    door1.style.height = "300px";
+                    door1.style.objectFit = "cover";
+                    door1.style.borderRadius = "8px";
+                    door1.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+
+                    const door2 = document.createElement('img');
+                    door2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
+                    door2.alt = "Tür 2"; 
+                    door2.style.width = "200px";
+                    door2.style.height = "300px";
+                    door2.style.objectFit = "cover";
+                    door2.style.transform = "scaleX(-1)";
+                    door2.style.borderRadius = "8px";
+                    door2.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+
+                    const number1 = document.createElement('div');
+                    number1.textContent = '1';
+                    number1.style.position = 'absolute';
+                    number1.style.top = '10px';
+                    number1.style.left = '10px';
+                    number1.style.fontSize = '24px';
+                    number1.style.color = 'white';
+                    number1.style.textShadow = '2px 2px 4px rgba(0,0,0,0.5)';
+
+                    const number2 = document.createElement('div');
+                    number2.textContent = '2';
+                    number2.style.position = 'absolute';
+                    number2.style.top = '10px';
+                    number2.style.right = '10px';
+                    number2.style.fontSize = '24px';
+                    number2.style.color = 'white';
+                    number2.style.textShadow = '2px 2px 4px rgba(0,0,0,0.5)';
+
+                    const doorWrapper1 = document.createElement('div');
+                    doorWrapper1.style.position = 'relative';
+                    doorWrapper1.appendChild(door1);
+                    doorWrapper1.appendChild(number1);
+
+                    const doorWrapper2 = document.createElement('div');
+                    doorWrapper2.style.position = 'relative';
+                    doorWrapper2.appendChild(door2);
+                    doorWrapper2.appendChild(number2);
+
+                    doorContainer.appendChild(doorWrapper1);
+                    doorContainer.appendChild(doorWrapper2);
+                    this.storyText.appendChild(doorContainer);
+                    
+                    await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
                     this.currentScene = 'tuer';
                 } else if (input === 'runter') {
                     await this.handleBasement();
@@ -323,7 +380,7 @@ class HenrisSpiel {
                     kaffeeImg.src = "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg";
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
-                    kaffeeImg.style.maxWidth = '50%'; // Auf 50% geändert
+                    kaffeeImg.style.maxWidth = '25%'; // Auf 50% geändert
                     this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
                     this.endGame();
                 }
