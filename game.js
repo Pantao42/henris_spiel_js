@@ -227,28 +227,31 @@ class HenrisSpiel {
             case 'niedorf':
                 const questionsImg = document.createElement('img');
                 questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
-                questionsImg.style.display = 'block';
-                questionsImg.style.margin = '20px auto';
-                questionsImg.style.maxWidth = '20%';
-                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);  
+                questionsImg.alt = "Niedorf";
+                questionsImg.style.width = "100%";
+                questionsImg.style.maxWidth = "400px";
+                questionsImg.style.height = "auto";
+                questionsImg.style.display = "block";
+                questionsImg.style.margin = "20px auto";
+                questionsImg.style.borderRadius = "8px";
+                questionsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+                
+                this.storyText.appendChild(questionsImg);
+
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
                     this.currentFrage++;
                     if (this.currentFrage < this.fragen.length) {
                         await this.displayText(this.fragen[this.currentFrage][0]);
                     } else {
-                 //       questionsImg.remove(); // Bild entfernen wenn alle Fragen beantwortet
                         await this.displayText("Du bekommst eine 1 und einen Ausbildungsplatz an dem Ort deiner Wahl.");
                         await this.displayText("Du hast gewonnen!");
                         this.endGame();
                     }
                 } else {
-                   // questionsImg.remove(); // Bild entfernen bei falscher Antwort
                     await this.displayText("Falsch! Game Over!");
                     this.endGame();
                 }
-                // Bild für die Fragen anzeigen
-                             
                 break;
 
             case 'basement':
