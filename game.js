@@ -225,6 +225,12 @@ class HenrisSpiel {
                 break;
 
             case 'niedorf':
+                const questionsImg = document.createElement('img');
+                questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
+                questionsImg.style.display = 'block';
+                questionsImg.style.margin = '20px auto';
+                questionsImg.style.maxWidth = '20%';
+                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);  
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
                     this.currentFrage++;
@@ -242,12 +248,7 @@ class HenrisSpiel {
                     this.endGame();
                 }
                 // Bild für die Fragen anzeigen
-                const questionsImg = document.createElement('img');
-                questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
-                questionsImg.style.display = 'block';
-                questionsImg.style.margin = '20px auto';
-                questionsImg.style.maxWidth = '20%';
-                this.storyText.insertBefore(questionsImg, this.storyText.firstChild);               
+                             
                 break;
 
             case 'basement':

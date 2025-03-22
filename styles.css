@@ -208,8 +208,12 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#door2 {
+#door1 {
     transform: scaleX(-1);
+}
+
+#door2 {
+    transform: scaleX(1);
 }
 
 .door-number {
