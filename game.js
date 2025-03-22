@@ -108,13 +108,7 @@ class HenrisSpiel {
             this.niedorfImage = document.createElement('img');
             this.niedorfImage.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
             this.niedorfImage.alt = "Niedorf";
-            this.niedorfImage.style.width = "100%";
-            this.niedorfImage.style.maxWidth = "400px";
-            this.niedorfImage.style.height = "auto";
-            this.niedorfImage.style.display = "block";
-            this.niedorfImage.style.margin = "20px auto";
-            this.niedorfImage.style.borderRadius = "8px";
-            this.niedorfImage.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+            this.niedorfImage.classList.add('story-image');
         }
 
         this.storyText.insertBefore(this.niedorfImage, this.storyText.firstChild);
@@ -137,30 +131,16 @@ class HenrisSpiel {
     }
 
     async handleTuerwahl() {
-        this.clearDisplay();
-        this.doorsContainer.style.display = 'flex';
         this.buttonsContainer.style.display = 'none';
-        await this.displayText("Du drehst dich um und siehst 5 Türen vor dir. Welche Tür wählst du?");
+        await this.displayText("Du gehst nach Hause und bekommst einen Fehltag.");
         
-        // Erstelle die Türbilder
-        for (let i = 1; i <= 5; i++) {
-            const doorContainer = document.createElement('div');
-            doorContainer.classList.add('door-container');
-            
-            const doorNumber = document.createElement('div');
-            doorNumber.classList.add('door-number');
-            doorNumber.textContent = i;
-            
-            const img = document.createElement('img');
-            img.src = "https://cdn.pixabay.com/photo/2017/09/26/11/46/door-2788439_1280.png";
-            img.alt = `Tür ${i}`;
-            img.classList.add('door-image');
-            
-            doorContainer.appendChild(doorNumber);
-            doorContainer.appendChild(img);
-            doorContainer.addEventListener('click', () => this.handleInput(i.toString()));
-            this.doorsContainer.appendChild(doorContainer);
-        }
+        const homeImg = document.createElement('img');
+        homeImg.src = "https://cdn.pixabay.com/photo/2015/10/22/15/06/at-home-1001376_1280.jpg";
+        homeImg.alt = "Home";
+        homeImg.classList.add('story-image');
+        this.storyText.insertBefore(homeImg, this.storyText.firstChild);
+        this.endGame();
+    
         
         this.currentScene = 'tuerwahl';
     }
@@ -172,13 +152,7 @@ class HenrisSpiel {
         const gateImg = document.createElement('img');
         gateImg.src = "https://cdn.pixabay.com/photo/2018/02/10/19/19/goal-3144351_1280.jpg";
         gateImg.alt = "Schultor";
-        gateImg.style.width = "100%";
-        gateImg.style.maxWidth = "400px";
-        gateImg.style.height = "auto";
-        gateImg.style.display = "block";
-        gateImg.style.margin = "20px auto";
-        gateImg.style.borderRadius = "8px";
-        gateImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+        gateImg.classList.add('story-image');
         
         // Füge das Bild vor dem Text ein
         this.storyText.insertBefore(gateImg, this.storyText.firstChild);
@@ -193,13 +167,7 @@ class HenrisSpiel {
                     const stairsImg = document.createElement('img');
                     stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
                     stairsImg.alt = "Treppenhaus";
-                    stairsImg.style.width = "100%";
-                    stairsImg.style.maxWidth = "400px";
-                    stairsImg.style.height = "auto";
-                    stairsImg.style.display = "block";
-                    stairsImg.style.margin = "20px auto";
-                    stairsImg.style.borderRadius = "8px";
-                    stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+                    stairsImg.classList.add('story-image');
                     
                     this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
                     this.currentScene = 'treppe';
@@ -291,9 +259,7 @@ class HenrisSpiel {
                     }
                     const jerxImg = document.createElement('img');
                     jerxImg.src = "https://cdn.pixabay.com/photo/2022/04/03/07/49/man-7108274_1280.jpg";
-                    jerxImg.style.display = 'block';
-                    jerxImg.style.margin = '20px auto';
-                    jerxImg.style.maxWidth = '50%';
+                    jerxImg.classList.add('story-image');
                     this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
                     this.endGame();
                 } else if (input === 'b') {
@@ -303,26 +269,10 @@ class HenrisSpiel {
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
                     const kaffeeImg = document.createElement('img');
                     kaffeeImg.src = "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg";
-                    kaffeeImg.style.display = 'block';
-                    kaffeeImg.style.margin = '20px auto';
-                    kaffeeImg.style.maxWidth = '25%';
+                    kaffeeImg.classList.add('story-image');
                     this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
                     this.endGame();
                 }
-                break;
-
-            case 'tuerwahl':
-                this.doorsContainer.style.display = 'none';
-                this.buttonsContainer.style.display = 'flex';
-                const tuerTexte = {
-                    '1': 'Hinter der Tür ist ein Portal nach Hause. Da du dich nicht bei Niedorf abgemeldet hast bekommst du einen unentschuldigten Fehltag. Ende',
-                    '2': 'Hinter der Tür wartet der Hausmeister und schickt dich zurück in den Unterricht. Ende',
-                    '3': 'Die Tür führt in den Schulhof. Du machst blau und bekommst einen Fehltag. Ende',
-                    '4': 'Hinter der Tür ist der Schulleiter. Er ruft deine Eltern an. Ende',
-                    '5': 'Die Tür führt in die Cafeteria. Du bleibst den Rest des Tages dort. Ende'
-                };
-                await this.displayText(tuerTexte[input] || "Diese Tür gibt es nicht. Du gehst verwirrt nach Hause. Ende");
-                this.endGame();
                 break;
         }
     }
