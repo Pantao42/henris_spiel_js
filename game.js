@@ -169,19 +169,6 @@ class HenrisSpiel {
 
             case 'treppe':
                 if (input === 'hoch') {
-                    const stairsImg = document.createElement('img');
-                    stairsImg.src = "https://cdn.pixabay.com/photo/2016/09/24/18/25/lost-places-1692276_1280.jpg";
-                    stairsImg.alt = "Treppenhaus";
-                    stairsImg.style.width = "100%";
-                    stairsImg.style.maxWidth = "400px";
-                    stairsImg.style.height = "auto";
-                    stairsImg.style.display = "block";
-                    stairsImg.style.margin = "20px auto";
-                    stairsImg.style.borderRadius = "8px";
-                    stairsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-                    
-                    this.storyText.appendChild(stairsImg);
-                    
                     const doorContainer = document.createElement('div');
                     doorContainer.style.display = 'flex';
                     doorContainer.style.justifyContent = 'center';
@@ -235,9 +222,12 @@ class HenrisSpiel {
                     doorWrapper2.appendChild(door2);
                     doorWrapper2.appendChild(number2);
 
-                    doorContainer.appendChild(doorWrapper1);
-                    doorContainer.appendChild(doorWrapper2);
-                    this.storyText.appendChild(doorContainer);
+                    //doorContainer.appendChild(doorWrapper1);
+                    this.storyText.insertBefore(doorWrapper1, this.storyText.firstChild);
+                    //doorContainer.appendChild(doorWrapper2);
+                    this.storyText.insertBefore(doorWrapper2, this.storyText.firstChild);
+                    //this.storyText.appendChild(doorContainer);
+                    this.storyText.insertBefore(doorContainer, this.storyText.firstChild);
                     
                     await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
                     this.currentScene = 'tuer';
