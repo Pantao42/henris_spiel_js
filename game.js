@@ -222,12 +222,9 @@ class HenrisSpiel {
                     doorWrapper2.appendChild(door2);
                     doorWrapper2.appendChild(number2);
 
-                    //doorContainer.appendChild(doorWrapper1);
-                    this.storyText.insertBefore(doorWrapper1, this.storyText.firstChild);
-                    //doorContainer.appendChild(doorWrapper2);
-                    this.storyText.insertBefore(doorWrapper2, this.storyText.firstChild);
-                    //this.storyText.appendChild(doorContainer);
-                    this.storyText.insertBefore(doorContainer, this.storyText.firstChild);
+                    doorContainer.appendChild(doorWrapper1);
+                    doorContainer.appendChild(doorWrapper2);
+                    this.storyText.appendChild(doorContainer);
                     
                     await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
                     this.currentScene = 'tuer';
