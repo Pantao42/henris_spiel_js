@@ -7,6 +7,8 @@ class HenrisSpiel {
         this.leftEye = document.getElementById('left-eye');
         this.rightEye = document.getElementById('right-eye');
         this.doorsContainer = document.getElementById('doors-container');
+        this.door1 = document.getElementById('door1');
+        this.door2 = document.getElementById('door2');
         this.currentScene = null;
         this.lastQuestion = '';
         
@@ -15,6 +17,10 @@ class HenrisSpiel {
         // Füge Event-Listener für die Augen hinzu
         this.leftEye.addEventListener('click', () => this.handleInput('links'));
         this.rightEye.addEventListener('click', () => this.handleInput('rechts'));
+        
+        // Füge Event-Listener für die Türen hinzu
+        this.door1.addEventListener('click', () => this.handleInput('1'));
+        this.door2.addEventListener('click', () => this.handleInput('2'));
         
         this.startGame();
     }
@@ -53,7 +59,7 @@ class HenrisSpiel {
     clearDisplay() {
         this.storyText.innerHTML = '';
         this.buttonsContainer.innerHTML = '';
-        this.doorsContainer.innerHTML = '';
+        this.doorsContainer.style.display = 'none';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
         this.leftEye.style.display = 'none';
@@ -169,64 +175,9 @@ class HenrisSpiel {
 
             case 'treppe':
                 if (input === 'hoch') {
-                    const doorContainer = document.createElement('div');
-                    doorContainer.style.display = 'flex';
-                    doorContainer.style.justifyContent = 'center';
-                    doorContainer.style.gap = '20px';
-                    doorContainer.style.margin = '20px 0';
-
-                    const door1 = document.createElement('img');
-                    door1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
-                    door1.alt = "Tür 1";
-                    door1.style.width = "200px";
-                    door1.style.height = "300px";
-                    door1.style.objectFit = "cover";
-                    door1.style.borderRadius = "8px";
-                    door1.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-
-                    const door2 = document.createElement('img');
-                    door2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
-                    door2.alt = "Tür 2"; 
-                    door2.style.width = "200px";
-                    door2.style.height = "300px";
-                    door2.style.objectFit = "cover";
-                    door2.style.transform = "scaleX(-1)";
-                    door2.style.borderRadius = "8px";
-                    door2.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-
-                    const number1 = document.createElement('div');
-                    number1.textContent = '1';
-                    number1.style.position = 'absolute';
-                    number1.style.top = '10px';
-                    number1.style.left = '10px';
-                    number1.style.fontSize = '24px';
-                    number1.style.color = 'white';
-                    number1.style.textShadow = '2px 2px 4px rgba(0,0,0,0.5)';
-
-                    const number2 = document.createElement('div');
-                    number2.textContent = '2';
-                    number2.style.position = 'absolute';
-                    number2.style.top = '10px';
-                    number2.style.right = '10px';
-                    number2.style.fontSize = '24px';
-                    number2.style.color = 'white';
-                    number2.style.textShadow = '2px 2px 4px rgba(0,0,0,0.5)';
-
-                    const doorWrapper1 = document.createElement('div');
-                    doorWrapper1.style.position = 'relative';
-                    doorWrapper1.appendChild(door1);
-                    doorWrapper1.appendChild(number1);
-
-                    const doorWrapper2 = document.createElement('div');
-                    doorWrapper2.style.position = 'relative';
-                    doorWrapper2.appendChild(door2);
-                    doorWrapper2.appendChild(number2);
-
-                    doorContainer.appendChild(doorWrapper1);
-                    doorContainer.appendChild(doorWrapper2);
-                    this.storyText.appendChild(doorContainer);
-                    
-                    await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? (1/2)");
+                    this.doorsContainer.style.display = 'flex';
+                    this.buttonsContainer.style.display = 'none';
+                    await this.displayText("Oben stehst du vor zwei Türen mit der Nummer 1 und 2. Durch welche gehst du? Klicke auf eine Tür.");
                     this.currentScene = 'tuer';
                 } else if (input === 'runter') {
                     await this.handleBasement();
@@ -235,55 +186,12 @@ class HenrisSpiel {
 
             case 'tuer':
                 if (input === '1') {
-                    const doorImg1 = document.createElement('img');
-                    doorImg1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
-                    doorImg1.alt = "Tür 1";
-                    doorImg1.style.width = "30%";
-                    doorImg1.style.maxWidth = "100px";
-                    doorImg1.style.height = "auto";
-                    doorImg1.style.display = "block";
-                    doorImg1.style.margin = "20px auto";
-                    doorImg1.style.borderRadius = "8px";
-                    doorImg1.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-                    
-                    // Nummer 1 hinzufügen
-                    const number1 = document.createElement('div');
-                    number1.textContent = '1';
-                    number1.style.position = 'absolute';
-                    number1.style.top = '10px';
-                    number1.style.left = '10px';
-                    number1.style.fontSize = '24px';
-                    number1.style.color = 'white';
-                    doorImg1.style.position = 'relative';
-                    doorImg1.appendChild(number1);
-                    
-                    this.storyText.appendChild(doorImg1);
+                    this.doorsContainer.style.display = 'none';
+                    this.buttonsContainer.style.display = 'flex';
                     await this.handleGraziusEncounter();
                 } else if (input === '2') {
-                    const doorImg2 = document.createElement('img');
-                    doorImg2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
-                    doorImg2.alt = "Tür 2";
-                    doorImg2.style.width = "30%";
-                    doorImg2.style.maxWidth = "200px";
-                    doorImg2.style.height = "auto";
-                    doorImg2.style.display = "block";
-                    doorImg2.style.margin = "20px auto";
-                    doorImg2.style.borderRadius = "8px";
-                    doorImg2.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-                    doorImg2.style.transform = "scaleX(-1)"; // Bild spiegeln
-                    
-                    // Nummer 2 hinzufügen
-                    const number2 = document.createElement('div');
-                    number2.textContent = '2';
-                    number2.style.position = 'absolute';
-                    number2.style.top = '10px';
-                    number2.style.right = '10px';
-                    number2.style.fontSize = '24px';
-                    number2.style.color = 'white';
-                    doorImg2.style.position = 'relative';
-                    doorImg2.appendChild(number2);
-                    
-                    this.storyText.appendChild(doorImg2);
+                    this.doorsContainer.style.display = 'none';
+                    this.buttonsContainer.style.display = 'flex';
                     await this.handleNiedorfTest();
                 }
                 break;
