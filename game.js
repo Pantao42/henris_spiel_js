@@ -235,7 +235,6 @@ class HenrisSpiel {
 
             case 'tuer':
                 if (input === '1') {
-                    await this.handleGraziusEncounter();
                     const doorImg1 = document.createElement('img');
                     doorImg1.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg1.alt = "Tür 1";
@@ -258,9 +257,9 @@ class HenrisSpiel {
                     doorImg1.style.position = 'relative';
                     doorImg1.appendChild(number1);
                     
-                    this.storyText.insertBefore(doorImg1, this.storyText.firstChild);
+                    this.storyText.appendChild(doorImg1);
+                    await this.handleGraziusEncounter();
                 } else if (input === '2') {
-                    await this.handleNiedorfTest();
                     const doorImg2 = document.createElement('img');
                     doorImg2.src = "https://cdn.pixabay.com/photo/2018/08/27/03/08/door-handle-3633943_1280.jpg";
                     doorImg2.alt = "Tür 2";
@@ -284,7 +283,8 @@ class HenrisSpiel {
                     doorImg2.style.position = 'relative';
                     doorImg2.appendChild(number2);
                     
-                    this.storyText.insertBefore(doorImg2, this.storyText.firstChild);
+                    this.storyText.appendChild(doorImg2);
+                    await this.handleNiedorfTest();
                 }
                 break;
 
