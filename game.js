@@ -7,10 +7,14 @@ class HenrisSpiel {
         this.leftEye = document.getElementById('left-eye');
         this.rightEye = document.getElementById('right-eye');
         this.doorsContainer = document.getElementById('doors-container');
+        this.basementDoorsContainer = document.getElementById('basement-doors-container');
         this.door1 = document.getElementById('door1');
         this.door2 = document.getElementById('door2');
+        this.doorA = document.getElementById('door-a');
+        this.doorB = document.getElementById('door-b');
         this.currentScene = null;
         this.lastQuestion = '';
+        this.niedorfImage = null;
         
         this.restartButton.addEventListener('click', () => this.startGame());
         
@@ -21,6 +25,10 @@ class HenrisSpiel {
         // Füge Event-Listener für die Türen hinzu
         this.door1.addEventListener('click', () => this.handleInput('1'));
         this.door2.addEventListener('click', () => this.handleInput('2'));
+        
+        // Füge Event-Listener für die Basement-Türen hinzu
+        this.doorA.addEventListener('click', () => this.handleInput('a'));
+        this.doorB.addEventListener('click', () => this.handleInput('b'));
         
         this.startGame();
     }
@@ -53,6 +61,12 @@ class HenrisSpiel {
             this.storyText.innerHTML = `<p>${this.lastQuestion}</p><br><p>→ ${text}</p>`;
             this.buttonsContainer.innerHTML = '';
         }
+
+        // Füge das Niedorf-Bild wieder ein, wenn es existiert
+        if (this.niedorfImage) {
+            this.storyText.insertBefore(this.niedorfImage, this.storyText.firstChild);
+        }
+
         this.storyText.scrollTop = this.storyText.scrollHeight;
     }
 
@@ -60,10 +74,12 @@ class HenrisSpiel {
         this.storyText.innerHTML = '';
         this.buttonsContainer.innerHTML = '';
         this.doorsContainer.style.display = 'none';
+        this.basementDoorsContainer.style.display = 'none';
         this.restartButton.style.display = 'none';
         this.eyeContainer.style.display = 'none';
         this.leftEye.style.display = 'none';
         this.rightEye.style.display = 'none';
+        this.niedorfImage = null;
     }
 
     endGame() {
@@ -86,6 +102,23 @@ class HenrisSpiel {
 
     async handleNiedorfTest() {
         await this.displayText("Hinter der Tür steht Herr Niedorf und macht einen Überraschungstest.");
+        
+        // Erstelle das Bild nur einmal und speichere es
+        if (!this.niedorfImage) {
+            this.niedorfImage = document.createElement('img');
+            this.niedorfImage.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
+            this.niedorfImage.alt = "Niedorf";
+            this.niedorfImage.style.width = "100%";
+            this.niedorfImage.style.maxWidth = "400px";
+            this.niedorfImage.style.height = "auto";
+            this.niedorfImage.style.display = "block";
+            this.niedorfImage.style.margin = "20px auto";
+            this.niedorfImage.style.borderRadius = "8px";
+            this.niedorfImage.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+        }
+
+        this.storyText.insertBefore(this.niedorfImage, this.storyText.firstChild);
+
         this.fragen = [
             ["Ist E.Coli Grammnegativ oder Grammpositiv? (negativ/positiv)", "negativ"],
             ["Kann E.Coli Sporen bilden? (ja/nein)", "nein"],
@@ -97,7 +130,9 @@ class HenrisSpiel {
     }
 
     async handleBasement() {
-        await this.displayText("Hinter der Tür befindet sich ein Flur mit zwei Türen auf welchen A und B steht. Welche wählst du? (a/b)");
+        this.basementDoorsContainer.style.display = 'flex';
+        this.buttonsContainer.style.display = 'none';
+        await this.displayText("Hinter der Tür befindet sich ein Flur mit zwei Türen auf welchen A und B steht. Welche wählst du? Klicke auf eine Tür.");
         this.currentScene = 'basement';
     }
 
@@ -225,19 +260,6 @@ class HenrisSpiel {
                 break;
 
             case 'niedorf':
-                const questionsImg = document.createElement('img');
-                questionsImg.src = "https://cdn.pixabay.com/photo/2016/05/05/05/58/quiz-1373314_1280.jpg";
-                questionsImg.alt = "Niedorf";
-                questionsImg.style.width = "100%";
-                questionsImg.style.maxWidth = "400px";
-                questionsImg.style.height = "auto";
-                questionsImg.style.display = "block";
-                questionsImg.style.margin = "20px auto";
-                questionsImg.style.borderRadius = "8px";
-                questionsImg.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-                
-                this.storyText.appendChild(questionsImg);
-
                 if (input === this.fragen[this.currentFrage][1]) {
                     await this.displayText("Richtig!");
                     this.currentFrage++;
@@ -256,6 +278,8 @@ class HenrisSpiel {
 
             case 'basement':
                 if (input === 'a') {
+                    this.basementDoorsContainer.style.display = 'none';
+                    this.buttonsContainer.style.display = 'flex';
                     this.clearDisplay();
                     await this.displayText("Hinter der Tür steht Herr Jerx und fragt ob Nico schon wieder fehlt.");
                     if (this.generateRandomChoice() === 1) {
@@ -273,13 +297,15 @@ class HenrisSpiel {
                     this.storyText.insertBefore(jerxImg, this.storyText.firstChild);
                     this.endGame();
                 } else if (input === 'b') {
+                    this.basementDoorsContainer.style.display = 'none';
+                    this.buttonsContainer.style.display = 'flex';
                     this.clearDisplay();
                     await this.displayText("Hinter der Tür steht Frau Vollmer mit Kaffee und Kuchen. Du hast gewonnen :D");
                     const kaffeeImg = document.createElement('img');
                     kaffeeImg.src = "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg";
                     kaffeeImg.style.display = 'block';
                     kaffeeImg.style.margin = '20px auto';
-                    kaffeeImg.style.maxWidth = '25%'; // Auf 50% geändert
+                    kaffeeImg.style.maxWidth = '25%';
                     this.storyText.insertBefore(kaffeeImg, this.storyText.firstChild);
                     this.endGame();
                 }

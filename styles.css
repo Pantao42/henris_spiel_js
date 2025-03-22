@@ -183,6 +183,50 @@ button:hover {
     object-fit: contain;
 }
 
+#basement-doors-container {
+    display: none;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+#door-a-container, #door-b-container {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#door-a-container:hover, #door-b-container:hover {
+    transform: scale(1.05);
+}
+
+#door-a, #door-b {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#door-b {
+    transform: scaleX(-1);
+}
+
+#door-a-container .door-number {
+    left: 10px;
+}
+
+#door-b-container .door-number {
+    right: 10px;
+}
+
+@media (max-width: 480px) {
+    .door-container {
+        width: 20px;
+        height: 160px;
+    }
+}
+
 #doors-container {
     display: none;
     justify-content: center;
@@ -190,13 +234,13 @@ button:hover {
     margin: 20px 0;
 }
 
-.door-wrapper {
+#door1-container, #door2-container {
     position: relative;
     cursor: pointer;
     transition: transform 0.2s;
 }
 
-.door-wrapper:hover {
+#door1-container:hover, #door2-container:hover {
     transform: scale(1.05);
 }
 
@@ -208,20 +252,8 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#door1 {
-    transform: scaleX(-1);
-}
-
 #door2 {
-    transform: scaleX(1);
-}
-
-.door-number {
-    position: absolute;
-    top: 10px;
-    font-size: 24px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transform: scaleX(-1);
 }
 
 #door1-container .door-number {
@@ -232,9 +264,10 @@ button:hover {
     right: 10px;
 }
 
-@media (max-width: 480px) {
-    .door-container {
-        width: 120px;
-        height: 160px;
-    }
+.door-number {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 } 
