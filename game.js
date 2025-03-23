@@ -14,8 +14,7 @@ class HenrisSpiel {
         this.doorB = document.getElementById('door-b');
         this.currentScene = null;
         this.lastQuestion = '';
-        this.niedorfImage = null;
-        
+        this.niedorfImage = null;        
         this.restartButton.addEventListener('click', () => this.startGame());
         
         // Füge Event-Listener für die Augen hinzu
@@ -58,7 +57,8 @@ class HenrisSpiel {
             }
         } else {
             // Wenn es eine Antwort ist, zeige die letzte Frage und die Antwort
-            this.storyText.innerHTML = `<p>${this.lastQuestion}</p><br><p>→ ${text}</p>`;
+            //this.storyText.innerHTML = `<p>${this.lastQuestion}</p><br><p>→ ${text}</p>`;
+            this.storyText.innerHTML = `<p>${text}</p>`;
             this.buttonsContainer.innerHTML = '';
         }
 
@@ -130,23 +130,21 @@ class HenrisSpiel {
         this.currentScene = 'basement';
     }
 
-    async handleTuerwahl() {
+    async handleEnd() {
         this.buttonsContainer.style.display = 'none';
         await this.displayText("Du gehst nach Hause und bekommst einen Fehltag.");
-        
         const homeImg = document.createElement('img');
         homeImg.src = "https://cdn.pixabay.com/photo/2015/10/22/15/06/at-home-1001376_1280.jpg";
         homeImg.alt = "Home";
         homeImg.classList.add('story-image');
         this.storyText.insertBefore(homeImg, this.storyText.firstChild);
-        this.endGame();
-    
-        
-        this.currentScene = 'tuerwahl';
+        this.restartButton.style.display = 'inline';
+        this.currentScene = 'theend';
     }
 
     async startGame() {
         this.clearDisplay();
+        this.buttonsContainer.style.display = 'flex';
         await this.displayText("Es ist Montag morgen. Du stehst vor der Schule. Möchtest du hineingehen? (ja/nein)");
         
         const gateImg = document.createElement('img');
@@ -172,7 +170,7 @@ class HenrisSpiel {
                     this.storyText.insertBefore(stairsImg, this.storyText.firstChild);
                     this.currentScene = 'treppe';
                 } else if (input === 'nein') {
-                    await this.handleTuerwahl();
+                    await this.handleEnd();
                 }
                 break;
 
@@ -274,7 +272,12 @@ class HenrisSpiel {
                     this.endGame();
                 }
                 break;
+
+            case 'end':
+                this.endGame();
+                break;
         }
+
     }
 }
 
